@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+               git branch: 'main', url: 'https://github.com/ashwini-vaidyaa/SCM.git'
+            }
+        }
+		stage('docker build') {
+            steps {
+                sh '''  
+				sudo docker build -t student .
+				'''
+            }
+        }
+		stage('docker push ') {
+            steps {
+                sh ''' 
+				aws ecr get-login-password --region ap-northeast-1 | sudo docker login --username AWS --password-stdin 654654222795.dkr.ecr.ap-northeast-1.amazonaws.com
+				sudo docker tag student:latest 654654222795.dkr.ecr.ap-northeast-1.amazonaws.com/student:latest
+				sudo docker push 654654222795.dkr.ecr.ap-northeast-1.amazonaws.com/student:latest
+				'''
+            }
+        }
+    }
+}
