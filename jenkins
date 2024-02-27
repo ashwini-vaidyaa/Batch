@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-               git branch: 'main', url: 'https://github.com/ashwini-vaidyaa/SCM.git'
+             git branch: 'main', url: 'https://github.com/ashwini-vaidyaa/Batch.git'
             }
         }
 		stage('docker build') {
