@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh '''  
                                
-			 docker build -t student .
+			        sudo docker build -t student .
                                 '''
             }
         }
